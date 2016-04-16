@@ -134,4 +134,5 @@ void cardAdventurer(struct gameState *state, int drawntreasure, int currentPlaye
 void cardCouncil_room(struct gameState *state, int currentPlayer);
 int cardMine(struct gameState *state, int i, int j, int currentPlayer, int choice1, int choice2, int handPos);
 int cardRemodel(struct gameState *state, int currentPlayer, int i, int j, int choice1, int choice2, int handPos);
+void cardSmithy(struct gameState *state, int currentPlayer, int i, int handPos);
 #endif
