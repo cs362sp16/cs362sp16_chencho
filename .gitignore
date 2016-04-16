@@ -1,0 +1,5 @@
+dominion/*.o
+dominion/*.gcno
+dominion/*.dSYM
+dominion/playdom
+dominion/player
