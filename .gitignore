@@ -1,5 +1,6 @@
 dominion/*.o
 dominion/*.gcno
+dominion/*.gcda
 dominion/*.dSYM
 dominion/playdom
 dominion/player
