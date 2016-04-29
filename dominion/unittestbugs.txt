@@ -1,0 +1,10 @@
+Surprisingly, I did not find any bugs in the four functions I test.
+Functions I tested are numHandCard, fullDeckCount, handCard, endTurn
+
+I found bugs in the cardEffect though.
+The first one I tested is feast, it doesn't return -1 when execute failure, which could cause infinite loop.
+Also the game did not trash the card. 
+The second one I tested is smithy, it doesn't have bugs even though I chaged the for statement in the first 
+assignment in order to create some bugs for it.
+The third I tested is gardens. It doesn't have bugs.
+The last card I tested is village, it doesn't have bugs.

@@ -691,12 +691,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	 x = 1;//Condition to loop on
 	 while( x == 1) {//Buy one card
 	    if (supplyCount(choice1, state) <= 0){
-	       if (DEBUG)
 		  printf("None of that card left, sorry!\n");
 
 	       if (DEBUG){
 		  printf("Cards Left: %d\n", supplyCount(choice1, state));
 	       }
+	       return -1; //BUG
 	    }
 	    else if (state->coins < getCost(choice1)){
 	       printf("That card is too expensive!\n");
@@ -704,6 +704,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	       if (DEBUG){
 		  printf("Coins: %d < %d\n", state->coins, getCost(choice1));
 	       }
+	       return -1; //BUG
 	    }
 	    else{
 
