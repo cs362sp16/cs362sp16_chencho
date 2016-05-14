@@ -59,7 +59,26 @@ results.out: unittest1 playdom
 	echo "GCOV AFTER PLAYING A GAME" >> results.out
 	gcov dominion.c >> results.out
 
-all: playdom player unittest cardtest
+#random test
+rt:
+	gcc -o rta randomtestadventurer.c -g dominion.o rngs.o interface.o $(CFLAGS)
+	gcc -o rt1 randomtestcard1.c -g dominion.o rngs.o interface.o $(CFLAGS)
+	gcc -o rt2 randomtestcard2.c -g dominion.o rngs.o interface.o $(CFLAGS)
+
+#the coverage will be comulative
+rt.out:
+	./rta 42 >> randomtestadventurer.out
+	echo "GCOV AFTER random TEST" >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	./rt1 42 >> randomtestcard1.out
+	echo "GCOV AFTER random TEST" >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+	./rt2 42 >> randomtestcard2.out
+	echo "GCOV AFTER random TEST" >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+
+
+all: playdom player unittest cardtest rt
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM results.out
+	rm -f *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM *.out rt1 rt2 rta

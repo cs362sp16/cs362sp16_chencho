@@ -1,0 +1,7 @@
+I managed to cover 100% for random adventurer test. Get to more than 90% coverage is easy for adventurer, but in order to get 100%, the deck number below 1 must be triggered so it calls the shuffle function. In order to do that, I make the program buy cards so sometimes the deck will be empty. And it works. It takes me a very short time to get 100% coverage because I make the test ran 2000 times on flip.
+
+I also get 100% coverage for smithy card. Because this card is just a for loop without any conditions. For smithy, code coverage may not be super helpful since every line will ran. But notice that there is a for loop that runs 3 times for every call. So it should have 3*call times in the gcov.
+
+The last card I tried is trying to play garden. Garden card returns -1 if it is called in the card effect. I get 100% for garden card. I checked the number of hand after calling to play card. Since garden card can’t be player, my number of hand remains the same. 
+
+In many situations, random tests will be better than simple unit test. For example, with adventurer card, the hand is very important. So with random test, we can get high coverage more easily and see clearly how many times lines of codes are executed. 

@@ -1,4 +1,4 @@
-//Random card test for Smithy
+//Random card test for Adventurer
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -47,18 +47,25 @@ int main(int argc, char **argv) {
          }
          }
          */
+        updateCoins(g.whoseTurn, &g, 0);
+        int preCoin = g.coins;
+        int i = cardEffect(7,1,1,1,&g,0,0);
         
-        int pre_numHand = g.handCount[g.whoseTurn];
-        myassert(pre_numHand==5, "I should have 5 cards in my hand now");
-        cardEffect(13, 0, 0, 0, &g, 0, 0);
-        int post_numHand =g.handCount[g.whoseTurn];
-        myassert(post_numHand==7, "I should have 7 cards in my hand now");
-        //buy a card does not update the coins.
-        int i = buyCard(0, &g);
+        myassert(i == 0, "I should always be able to play adventurer");
+        myassert(g.handCount[g.whoseTurn]==7, "The player should have 7 cards in hand after playing adventure");
+        
+        updateCoins(g.whoseTurn, &g, 0);
+        int postCoin = g.coins;
+        myassert(preCoin < postCoin+1, "The player should have at least 2 more coin after playing adventure");
+        
+        initializeGame(numPlayer, k, atoi(argv[1]), &g);
+        i = buyCard(0, &g);
         myassert(i == 0, "I should have enough coins to buy a smithy now");
-        post_numHand =g.handCount[g.whoseTurn];
-        myassert(post_numHand==7, "I should still have 7 cards in my hand now");
-        
+        //play one more treasure
+        i = cardEffect(7,1,1,1,&g,0,0);
+        myassert(i == 0, "I should always be able to play adventurer");
+        i = cardEffect(7,1,1,1,&g,0,0);
+        myassert(i == 0, "I should always be able to play adventurer");
 
     }
     checkasserts();

@@ -1,4 +1,4 @@
-//Random card test for Smithy
+//Random card test for Adventurer
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -47,19 +47,21 @@ int main(int argc, char **argv) {
          }
          }
          */
+        updateCoins(g.whoseTurn, &g, 0);
+        int preCoin = g.coins;
         
-        int pre_numHand = g.handCount[g.whoseTurn];
-        myassert(pre_numHand==5, "I should have 5 cards in my hand now");
-        cardEffect(13, 0, 0, 0, &g, 0, 0);
-        int post_numHand =g.handCount[g.whoseTurn];
-        myassert(post_numHand==7, "I should have 7 cards in my hand now");
-        //buy a card does not update the coins.
-        int i = buyCard(0, &g);
-        myassert(i == 0, "I should have enough coins to buy a smithy now");
-        post_numHand =g.handCount[g.whoseTurn];
-        myassert(post_numHand==7, "I should still have 7 cards in my hand now");
+        //gain a garden to hand for player 0
+        gainCard(2, &g, 2, 0);
+        //trying to play garden
+        int i = cardEffect(gardens, 0, 0, 0, &g, 5, 0);
+        int num = g.handCount[0];
+        myassert( i == -1, "I should not be able to play garden card");
+        myassert(num == 6, "There should still be 6 cards in my hand");
         
-
+        updateCoins(g.whoseTurn, &g, 0);
+        int postCoin = g.coins;
+        myassert(preCoin == postCoin, "The player should have at least 2 more coin after playing adventure");
+        
     }
     checkasserts();
     
