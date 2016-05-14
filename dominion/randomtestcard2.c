@@ -1,4 +1,4 @@
-//Random card test for Adventurer
+//Random card test for Garden
 
 #include "dominion.h"
 #include "dominion_helpers.h"
