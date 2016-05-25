@@ -22,10 +22,10 @@ enum CARD
    province,
 
    copper,
-   silver,
+   silver,//5
    gold,
 
-   adventurer,
+   adventurer, //7
    /* If no/only 1 treasure found, stop when full deck seen */
    council_room,
    feast, /* choice1 is supply # of card gained) */
@@ -49,7 +49,7 @@ enum CARD
    outpost,
    salvager, /* choice1 = hand# to trash */
    sea_hag,
-   treasure_map
+   treasure_map //26
   };
 
 struct gameState {
