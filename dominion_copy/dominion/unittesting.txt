@@ -1,0 +1,16 @@
+I used gcov to measure the code coverage. As more tests are executed, the gcov
+coverage increased. At first the coverage increase greatly, then tend to slow 
+down. Because most of the codes will be reused. As the code coverage goes up, we
+know we have better tests in our code. The test coverage results give us statistics
+on how much we have tested, and how much more we may need. It gives us confidence in
+the correctness of our program.
+
+The unit testing efforts:
+I spend quite a few time writing these tests especially for the card effects. Because
+I have to get familiar with these functions, their long parameters so I can use them
+to play card. I also need to figure out in which function they update the numActions in
+the game stats. Overall, testing in a project like this takes a lot of time. You need 
+to spend time figuring out its structure. With such a big project, I am not perfectly 
+confident even with these tests. More through tests may be required. And I will need to
+test more functions(i.e. those I used to test, like gainCard(), I will have to assume they
+are correct).

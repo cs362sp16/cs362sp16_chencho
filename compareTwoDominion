@@ -1,0 +1,38 @@
+#!/bin/bash
+#shell scrip
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: compareTwoDominion [seed]"
+	exit
+fi
+
+echo "Compile my code"
+cd ./dominion/ 
+make clean
+make all
+cd ..
+#put the other source into dominion_copy
+echo "COmpile classmate's code"
+cd ./dominion_copy/dominion
+make clean
+make all
+cd ..
+cd ..
+
+./dominion/testDominion $1 > output1
+./dominion_copy/dominion/testDominion $1 > output2
+gcov ./dominion/dominion.c >> output1
+cat dominion.c.gcov >>output1
+rm -f dominion.c.gcov
+gcov ./dominion_copy/dominion/dominion.c >>output2
+cat dominion.c.gcov >>output2
+rm -f dominion.c.gcov
+
+diff output1 output2 > diff.out
+
+if [ ! -s diff.out ]
+then
+	echo "TEST PASSED"
+else
+	echo "TEST FAILED"
+fi

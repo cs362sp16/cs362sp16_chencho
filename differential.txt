@@ -1,0 +1,6 @@
+I found a difference quickly.
+Even if we ran the two random test dominion with the same seed, because of the other random element I used in the program, ie.srand(time()); it is easy to produce difference. 
+Besides it is really hard to decide who is correct in these random tests because all these tests are ran randomly. Moves are chosen randomly so it is not too surprised that they are different. 
+Thus using a differential testing is not ideal for a test that relies on random generator heavily. 
+As for the code coverage, it is pretty good. My code can easily get to 60% coverage with about 5 runs. It can even get more than 70% of code coverage easily.
+
