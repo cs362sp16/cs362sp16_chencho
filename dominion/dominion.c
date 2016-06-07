@@ -716,24 +716,32 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	       if (DEBUG){
 		  printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
 	       }
+            
+            //put cards back if now the user is able to buy the card he/she wants with feast
+
 
 	       gainCard(choice1, state, 0, currentPlayer);//Gain the card
 	       x = 0;//No more buying cards
+            
+            //discard the feast.
+            discardCard(handPos, currentPlayer, state, 0);
 
+            
 	       if (DEBUG){
 		  printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
 	       }
 
 	    }
-	 }     
-
-	 //Reset Hand
-	 for (i = 0; i <= state->handCount[currentPlayer]; i++){
-	    state->hand[currentPlayer][i] = temphand[i];
-	    temphand[i] = -1;
 	 }
-	 //Reset Hand
+           //Reset Hand
+           for (i = 0; i <= state->handCount[currentPlayer]; i++){
+               state->hand[currentPlayer][i] = temphand[i];
+               temphand[i] = -1;
+           }
+           //Reset Hand
 
+
+	 
 	 return 0;
 
       case gardens:
@@ -1340,7 +1348,7 @@ int cardRemodel(struct gameState *state, int currentPlayer, int i, int j, int ch
    //discard trashed card
    for (i = 0; i < state->handCount[currentPlayer]; i++)
    {
-      if (state->hand[currentPlayer][i] = j)
+      if (state->hand[currentPlayer][i] == j)
       {
 	 discardCard(i, currentPlayer, state, 0);
 	 break;
@@ -1351,7 +1359,7 @@ int cardRemodel(struct gameState *state, int currentPlayer, int i, int j, int ch
 
 void cardSmithy(struct gameState *state, int currentPlayer, int i, int handPos){
    //+3 Cards
-   for (i; i < 3; i++)
+   for (i=0; i < 3; i++)
    {
       drawCard(currentPlayer, state);
    }

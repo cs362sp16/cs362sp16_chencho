@@ -1,0 +1,33 @@
+I read a bug report from Shuai Peng.
+In his bug report, he indicates that 
+
+“in whole case feast, author backup hand and buy new card, after he finish buy action, he reset hand from backup, so it��s like he overwrite what he did before. The buy action and trash card is not work.
+ This is logical bugs.”
+
+So I look into the feast card in dominion.
+The bug report clearly said that the error is in resetting hand, so I look into the code that resets the hand. And I found that the report makes sense. 
+After the function determines the card is able to gain, it adds the card into current hand, which is nothing. 
+So I figured I should copy the cards back first and then gain the card.
+But then I suddenly recall that the card bought using feast will not be added to hand.
+So that means the replacing hand at the end is right.
+I double check the feast card effect with playdominion.com and even play the game to make sure I am correct. And finally I conclude that dominion card feast doesn’t add the new bought card to the player’s hand, instead, it goes to the discard pile.
+
+Though this bug report is not totally correct, but it makes me rethink about the feast card. I do find another bug about the feast card. That’s after playing the card, the player didn’t discard feast!
+I then add a 	 “discardCard(i, currentPlayer, state, 0);” to discard feast.
+And then I ran the cardtest I have, it passed.
+
+flip3 ~/Github/cs362sp16_chencho/dominion 263% ./cardtest1
+That card is too expensive!
+None of that card left, sorry!
+TEST SUCCESSFULLY COMPLETED.
+
+
+This is how the test looks like. I try to buy a too expensive card and a card that is not in the game, and the feast gives me correct error message. While I was going to buy a smithy, it bought the card successfully. 
+
+Agan’s principles I applied during this process:
+
+1.Understand the system: I took a while to learn how to play dominion. Besides, in order to fix bug, I took a long time going over the code in dominion to understand the structure of the game and what each function is intending to do.
+3.Quit thinking and look: Go look at the code. Don’t think too long before actually look at the code.
+4.Divide and conquer: I always use this way to divide big and long chunk of code into small peaces. In this way we can quickly identify where the bug is.
+5.Change one thing at a time: Don’t change too much at one time or you could found yourself in a mess for a big project!
+6.Keep and audit trail:Use cout!
