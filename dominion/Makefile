@@ -87,7 +87,10 @@ testd.out:
 	gcov dominion.c >> testdominion.out
 	cat dominion.c.gcov >>testdominion.out
 
-all: playdom player unittest cardtest rt testd
+bugDominion:
+	gcc -o cardtest1_bug dominion_bug.c rngs.c interface.c cardtest1.c $(CFLAGS)
+
+all: playdom player unittest cardtest rt testd bugDominion
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM *.out rt1 rt2 rta testDominion

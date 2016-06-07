@@ -1,0 +1,28 @@
+DeltaDebug
+
+First I need to identify the test cases. I have two files dominion.c and dominion_bug.c. The 2nd one will fail the cardtest1.c which test the feast card.
+Second I need to identify the deltas. The passing case will run smoothly when a card buy is failed with a warning message and a function return -1. While the failing test case will be in infinite loop when players are trying to buy a card more expensive than 5 coins.
+Third I create the MyDD.py module using the template. Besides I download the DD.py core module for the delta debugging tool.
+Fourth I change the MyDD.py into the one that will run the two different version of Dominion card test feast.
+Finally I call the MyDD to run the delta test. 
+The delta debug tool identifies the number of fail and the number of pass.     The 1-minimal failure-inducing input is {while( x == 1) {//Buy one card
+	    if (supplyCount(choice1, state) <= 0){
+		  printf("None of that card left, sorry!\n");
+
+	       if (DEBUG){
+		  printf("Cards Left: %d\n", supplyCount(choice1, state));
+	       }
+	       //return -1; //BUG
+	    }
+	    else if (state->coins < getCost(choice1)){
+	       printf("That card is too expensive!\n");
+
+	       if (DEBUG){
+		  printf("Coins: %d < %d\n", state->coins, getCost(choice1));
+	       }
+	       //return -1; //BUG
+	    }}}
+    Removing any element will make the failure go away.
+It identifies the part of the code that fails the test and ask me to remove it. 
+Finally I checked the part of code and think about it logically, it is the infinite loop that fail the test. So I return a -1 for feast when feast is not player. 
+Bug FIXED.
