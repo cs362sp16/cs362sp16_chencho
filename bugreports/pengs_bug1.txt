@@ -1,0 +1,12 @@
+TO: 
+Shuai Peng
+pengs
+
+SUMMARY:
+	Didn’t stop the feast function when the feast is not able to buy a new card
+SEVERITY: 
+	Critical	
+
+DETAILS:
+	The feast card fells into infinite loop when the card in choice 1 is too expensive to buy.
+	The card should return a -1 when failed.

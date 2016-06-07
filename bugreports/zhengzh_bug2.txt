@@ -1,0 +1,12 @@
+TO: 
+Zheng Gan Zheng
+Zhengzh
+
+SUMMARY:
+	Smithy draws 25 cards. After play Smithy, cardEffect function doesn’t return a 0 indicating success.
+SEVERITY: 
+	Critical	
+
+DETAILS:
+	In the smithy card’s for loop, there is 25 cards drawn. And the cardEffect should return 0 upon successfully played. 
+	You can add the return 0 in the cardEffect function when your refactored smithy function returns 0.
